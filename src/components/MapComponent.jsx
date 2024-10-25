@@ -49,6 +49,11 @@ const MapComponent = ({ locationData,studentLocations}) => {
     iconSize:[42,42]
   })
 
+  const busCustomeIcon = new Icon({
+    iconUrl: "./bus.png",
+    iconSize:[42,42]
+  })
+
   const handleShareLocationClick = () => {
     Swal.fire({
       title: 'Enter Your ID',
@@ -88,10 +93,10 @@ const MapComponent = ({ locationData,studentLocations}) => {
         <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={[latitude, longitude]}></Marker>
+        <Marker position={[latitude, longitude]} icon={busCustomeIcon}></Marker>
         {studentLocations.map(location => (<Marker key={location} position={location.geocode} icon={customeIcon}>
           
-          <Popup>{location.message }</Popup>
+          <Popup>{location.name}<br/>ID: {location.studentID}</Popup>
         </Marker>))}
 
       </MapContainer>
