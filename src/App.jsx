@@ -17,10 +17,12 @@ const App = () => {
       axios
         .get("/students-location")
         .then((res) => setStudentLocations(res.data));
-    }, 5000);
+      
+      // console.log(Date());
+    }, 1000);
   }, [axios]);
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <div className="flex flex-col md:flex-row">
         <MapComponent
           locationData={gps_data}

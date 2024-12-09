@@ -1,0 +1,22 @@
+.glass-swal {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 1rem;
+    padding: 2rem;
+    color: white;
+  }
+  
+  .swal-title {
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  }
+
+.no-bg .swal2-success-circular-line-left,
+.no-bg .swal2-success-circular-line-right,
+.no-bg .swal2-success-fix {
+  background: none;
+  box-shadow: none;
+  display: none;
+}
+  

@@ -2,21 +2,29 @@ import React, { useState } from 'react';
 import { FaMapMarkerAlt, FaBus, FaUserFriends, FaCog, FaTachometerAlt, FaAngleDoubleLeft, FaAngleDoubleRight, FaUserPlus, FaEye, FaSignOutAlt } from 'react-icons/fa';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-const Sidebar = ({ userRole }) => {
-    const [isOpen, setIsOpen] = useState(true);
-    const navigate = useNavigate();
+const Sidebar = () => {
+  const [isOpen, setIsOpen] = useState(true);
+  const navigate = useNavigate();
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
-    };
-    
-    const logout = () => {
-        localStorage.removeItem('id');
-        navigate('/login');
-    }
+  };
+  const userRole=localStorage.getItem('role');
+  
+  const logout = () => {
+    localStorage.removeItem('id');
+    navigate('/login');
+  };
 
   return (
     <div
-      className={`h-screen bg-gray-800 text-gray-200 shadow-lg transition-all duration-300 ${isOpen ? 'w-64' : 'w-20'}`}
+      className={`h-screen backdrop-blur-lg bg-white/5 text-gray-200 shadow-lg transition-all duration-300 ${
+        isOpen ? 'w-64' : 'w-20'
+      } flex flex-col`}
+      style={{
+        boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+        borderRadius: '8px',
+        border: '1px solid rgba(255, 255, 255, 0.3)',
+      }}
     >
       <div className="flex items-center justify-between p-4 border-b border-gray-700">
         {isOpen && <h1 className="text-xl font-bold">DIU_Connect</h1>}
@@ -26,12 +34,12 @@ const Sidebar = ({ userRole }) => {
       </div>
 
       <nav className="flex flex-col mt-4 space-y-2">
-        {userRole === 'student' || userRole === 'driver' ? (
+        {userRole === 'Student' || userRole === 'Driver' ? (
           <>
             <NavLink
-              to="/dashboard"
-              className="flex items-center px-4 py-3 hover:bg-gray-700 transition duration-300"
-              activeClassName="bg-gray-700"
+              to="/student-dashboard"
+              className="flex items-center px-4 py-3 hover:bg-gray-700/50 transition duration-300 rounded-lg"
+              activeClassName="bg-gray-700/50"
             >
               <FaTachometerAlt className="mr-3" />
               {isOpen && <span>Dashboard</span>}
@@ -39,8 +47,8 @@ const Sidebar = ({ userRole }) => {
 
             <NavLink
               to="/bus-location"
-              className="flex items-center px-4 py-3 hover:bg-gray-700 transition duration-300"
-              activeClassName="bg-gray-700"
+              className="flex items-center px-4 py-3 hover:bg-gray-700/50 transition duration-300 rounded-lg"
+              activeClassName="bg-gray-700/50"
             >
               <FaMapMarkerAlt className="mr-3" />
               {isOpen && <span>Bus Location</span>}
@@ -48,8 +56,8 @@ const Sidebar = ({ userRole }) => {
 
             <NavLink
               to="/activity"
-              className="flex items-center px-4 py-3 hover:bg-gray-700 transition duration-300"
-              activeClassName="bg-gray-700"
+              className="flex items-center px-4 py-3 hover:bg-gray-700/50 transition duration-300 rounded-lg"
+              activeClassName="bg-gray-700/50"
             >
               <FaUserFriends className="mr-3" />
               {isOpen && <span>Activity</span>}
@@ -57,8 +65,8 @@ const Sidebar = ({ userRole }) => {
 
             <NavLink
               to="/personal-info"
-              className="flex items-center px-4 py-3 hover:bg-gray-700 transition duration-300"
-              activeClassName="bg-gray-700"
+              className="flex items-center px-4 py-3 hover:bg-gray-700/50 transition duration-300 rounded-lg"
+              activeClassName="bg-gray-700/50"
             >
               <FaCog className="mr-3" />
               {isOpen && <span>Personal Info</span>}
@@ -66,19 +74,18 @@ const Sidebar = ({ userRole }) => {
 
             <NavLink
               onClick={logout}
-              className="flex items-center px-4 py-3 hover:bg-gray-700 transition duration-300"
-              activeClassName="bg-gray-700"
+              className="flex items-center px-4 py-3 hover:bg-gray-700/50 transition duration-300 rounded-lg cursor-pointer"
             >
               <FaSignOutAlt className="mr-3" />
               {isOpen && <span>LogOut</span>}
             </NavLink>
           </>
-        ) : userRole === 'admin' && (
+        ) : userRole === 'Admin' && (
           <>
             <NavLink
               to="/dashboard"
-              className="flex items-center px-4 py-3 hover:bg-gray-700 transition duration-300"
-              activeClassName="bg-gray-700"
+              className="flex items-center px-4 py-3 hover:bg-gray-700/50 transition duration-300 rounded-lg"
+              activeClassName="bg-gray-700/50"
             >
               <FaTachometerAlt className="mr-3" />
               {isOpen && <span>Dashboard</span>}
@@ -86,8 +93,8 @@ const Sidebar = ({ userRole }) => {
 
             <NavLink
               to="/bus-location"
-              className="flex items-center px-4 py-3 hover:bg-gray-700 transition duration-300"
-              activeClassName="bg-gray-700"
+              className="flex items-center px-4 py-3 hover:bg-gray-700/50 transition duration-300 rounded-lg"
+              activeClassName="bg-gray-700/50"
             >
               <FaMapMarkerAlt className="mr-3" />
               {isOpen && <span>Bus Location</span>}
@@ -95,17 +102,34 @@ const Sidebar = ({ userRole }) => {
 
             <NavLink
               to="/activity"
-              className="flex items-center px-4 py-3 hover:bg-gray-700 transition duration-300"
-              activeClassName="bg-gray-700"
+              className="flex items-center px-4 py-3 hover:bg-gray-700/50 transition duration-300 rounded-lg"
+              activeClassName="bg-gray-700/50"
             >
               <FaUserFriends className="mr-3" />
               {isOpen && <span>Activity</span>}
+              </NavLink>
+              <NavLink
+              to="/personal-info"
+              className="flex items-center px-4 py-3 hover:bg-gray-700/50 transition duration-300 rounded-lg"
+              activeClassName="bg-gray-700/50"
+            >
+              <FaCog className="mr-3" />
+              {isOpen && <span>Personal Info</span>}
+              </NavLink>
+              
+              <NavLink
+              to="/BusAndRoutes"
+              className="flex items-center px-4 py-3 hover:bg-gray-700/50 transition duration-300 rounded-lg"
+              activeClassName="bg-gray-700/50"
+            >
+              <FaUserPlus className="mr-3" />
+              {isOpen && <span>Bus And Routes</span>}
             </NavLink>
 
             <NavLink
               to="/add-user"
-              className="flex items-center px-4 py-3 hover:bg-gray-700 transition duration-300"
-              activeClassName="bg-gray-700"
+              className="flex items-center px-4 py-3 hover:bg-gray-700/50 transition duration-300 rounded-lg"
+              activeClassName="bg-gray-700/50"
             >
               <FaUserPlus className="mr-3" />
               {isOpen && <span>Add User</span>}
@@ -113,8 +137,8 @@ const Sidebar = ({ userRole }) => {
 
             <NavLink
               to="/view-users"
-              className="flex items-center px-4 py-3 hover:bg-gray-700 transition duration-300"
-              activeClassName="bg-gray-700"
+              className="flex items-center px-4 py-3 hover:bg-gray-700/50 transition duration-300 rounded-lg"
+              activeClassName="bg-gray-700/50"
             >
               <FaEye className="mr-3" />
               {isOpen && <span>View Users</span>}
@@ -122,8 +146,8 @@ const Sidebar = ({ userRole }) => {
 
             <NavLink
               to="/all-drivers"
-              className="flex items-center px-4 py-3 hover:bg-gray-700 transition duration-300"
-              activeClassName="bg-gray-700"
+              className="flex items-center px-4 py-3 hover:bg-gray-700/50 transition duration-300 rounded-lg"
+              activeClassName="bg-gray-700/50"
             >
               <FaBus className="mr-3" />
               {isOpen && <span>All Drivers</span>}
@@ -131,8 +155,7 @@ const Sidebar = ({ userRole }) => {
 
             <NavLink
               onClick={logout}
-              className="flex items-center px-4 py-3 hover:bg-gray-700 transition duration-300"
-              activeClassName="bg-gray-700"
+              className="flex items-center px-4 py-3 hover:bg-gray-700/50 transition duration-300 rounded-lg cursor-pointer"
             >
               <FaSignOutAlt className="mr-3" />
               {isOpen && <span>LogOut</span>}
@@ -140,7 +163,6 @@ const Sidebar = ({ userRole }) => {
           </>
         )}
       </nav>
-
     </div>
   );
 };
