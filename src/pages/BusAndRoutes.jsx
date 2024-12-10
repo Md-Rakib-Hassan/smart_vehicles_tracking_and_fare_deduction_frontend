@@ -26,8 +26,8 @@ const BusAndRoutes = () => {
   // const [availableDriver, setAvailableDriver] = useState(["Shakib", "Ridwan"]);
   const [allRoutes, setAllRoutes] = useState({});
   const [busRoutes, setBusRoutes] = useState([]);
-  const [RouteTime, setRouteTime] = useState([]);
-  const [busDate,setBusDate]=useState({});
+  const [RouteTime, setRouteTime] = useState([]); //time of buses
+  const [busDate,setBusDate]=useState({}); //date of bus
   const [route, setRoute] = useState({ bus: "", from: "", to: "", driver: "" });
   const axios = useAxios();
   

@@ -55,6 +55,15 @@ const Sidebar = () => {
             </NavLink>
 
             <NavLink
+              to="/bus-schedules"
+              className="flex items-center px-4 py-3 hover:bg-gray-700/50 transition duration-300 rounded-lg"
+              activeClassName="bg-gray-700/50"
+            >
+              <FaEye className="mr-3" />
+              {isOpen && <span>Bus Schedules</span>}
+            </NavLink>
+
+            <NavLink
               to="/activity"
               className="flex items-center px-4 py-3 hover:bg-gray-700/50 transition duration-300 rounded-lg"
               activeClassName="bg-gray-700/50"
@@ -124,7 +133,18 @@ const Sidebar = () => {
             >
               <FaUserPlus className="mr-3" />
               {isOpen && <span>Bus And Routes</span>}
+              </NavLink>
+
+              <NavLink
+              to="/bus-schedules"
+              className="flex items-center px-4 py-3 hover:bg-gray-700/50 transition duration-300 rounded-lg"
+              activeClassName="bg-gray-700/50"
+            >
+              <FaEye className="mr-3" />
+              {isOpen && <span>Bus Schedules</span>}
             </NavLink>
+              
+              
 
             <NavLink
               to="/add-user"

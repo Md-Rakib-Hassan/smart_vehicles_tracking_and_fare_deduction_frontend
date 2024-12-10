@@ -13,6 +13,7 @@ import AddUser from '../pages/AddUser';
 import AllDriver from '../pages/AllDriver';
 import Dashboard from '../pages/Dashboard';
 import BusAndRoutes from '../pages/BusAndRoutes';
+import BusSchedules from '../pages/BusSchedules';
 
 const router = createBrowserRouter([
     {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
           {
             path: "/dashboard",
             element:<Dashboard></Dashboard>
+          },
+          {
+            path: "/bus-schedules",
+            element:<BusSchedules></BusSchedules>
           },
           {
             path: '/activity',
