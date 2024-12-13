@@ -31,13 +31,13 @@ const App = () => {
     return `${day}-${month+1}-${year}`
   }
 
-  useEffect(() => {
-    axios.get(`/get-bus-schedules/${formatedDate(new Date())}`).then(res => {
-      // console.log(`url /get-bus-schedules/${formatedDate(busDate)}`);
-      // console.log(res.data.allRoutes);
-      setTodaysRoutes(res?.data?.allRoutes);
-    })
-  },[])
+  // useEffect(() => {
+  //   axios.get(`/get-bus-schedules/${formatedDate(new Date())}`).then(res => {
+  //     // console.log(`url /get-bus-schedules/${formatedDate(busDate)}`);
+  //     console.log(res);
+  //     setTodaysRoutes(res?.data?.allRoutes);
+  //   })
+  // },[])
   return (
     <div className="w-full ">
       <div className="flex flex-col md:flex-row">
@@ -45,7 +45,7 @@ const App = () => {
           locationData={gps_data}
           setLocationData={set_gps_data}
           studentLocations={studentLocations}
-          todaysRoutes={todaysRoutes}
+          // todaysRoutes={todaysRoutes}
           setGpsParam={setGpsParam}
           // isTraced={isTraced}
           // setIsTraced={setIsTraced}

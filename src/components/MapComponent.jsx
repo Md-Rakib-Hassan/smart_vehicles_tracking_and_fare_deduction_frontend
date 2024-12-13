@@ -13,7 +13,7 @@ import useBusName from "../hooks/useBusName";
 const MapComponent = ({
   locationData,
   studentLocations,
-  todaysRoutes,
+  // todaysRoutes,
   setGpsParam,
 }) => {
   // const { latitude, longitude } = locationData || {}; // Destructure with fallback
@@ -27,13 +27,13 @@ const MapComponent = ({
   const [selectedBus, setSelectedBus] = useState(null);
   // const [busLocation, setBusLocation] = useState(locationData);
 
-  useEffect(() => {
-    axios
-      .post("/get-bus-by-destination", targetBus)
-      .then((res) => setSelectedBus(res?.data[0].matchingRoutes));
-    console.log(selectedBus);
-    // console.log(targetBus);
-  }, [targetBus]);
+  // useEffect(() => {
+  //   axios
+  //     .post("/get-bus-by-destination", targetBus)
+  //     .then((res) => setSelectedBus(res?.data[0].matchingRoutes));
+  //   console.log(selectedBus);
+  //   // console.log(targetBus);
+  // }, [targetBus]);
   // const bus_id = useBusName(targetBus?.bus);
   // console.log(bus_id);
 
@@ -160,7 +160,7 @@ const MapComponent = ({
               <option value="" disabled>
                 Select From
               </option>
-              {todaysRoutes.map((route) => (
+              {locationData.map((route) => (
                 <option key={route?._id} value={route?.from}>
                   {route.from}
                 </option>
@@ -177,7 +177,7 @@ const MapComponent = ({
               <option value="" disabled>
                 Select To
               </option>
-              {todaysRoutes.map((route) => (
+              {locationData.map((route) => (
                 <option key={route?._id} value={route?.to}>
                   {route?.to}
                 </option>
