@@ -13,8 +13,10 @@ import useBusName from "../hooks/useBusName";
 const MapComponent = ({
   locationData,
   studentLocations,
-  // todaysRoutes,
+  todaysRoutes,
   setGpsParam,
+  setIsTraced,
+  isTraced
 }) => {
   // const { latitude, longitude } = locationData || {}; // Destructure with fallback
   console.log(locationData);
@@ -22,20 +24,21 @@ const MapComponent = ({
   const [targetBus, setTargetBus] = useState({
     date: formatedDate(new Date()),
   });
+  console.log('tgtBus', targetBus);
   // State for dropdown selections
   const [selectedRoute, setSelectedRoute] = useState(null);
   const [selectedBus, setSelectedBus] = useState(null);
-  // const [busLocation, setBusLocation] = useState(locationData);
+  const [busLocation, setBusLocation] = useState(locationData);
 
-  // useEffect(() => {
-  //   axios
-  //     .post("/get-bus-by-destination", targetBus)
-  //     .then((res) => setSelectedBus(res?.data[0].matchingRoutes));
-  //   console.log(selectedBus);
-  //   // console.log(targetBus);
-  // }, [targetBus]);
-  // const bus_id = useBusName(targetBus?.bus);
-  // console.log(bus_id);
+  useEffect(() => {
+    axios
+      .post("/get-bus-by-destination", targetBus)
+      .then((res) => setSelectedBus(res?.data[0].matchingRoutes));
+    console.log(selectedBus);
+    // console.log(targetBus);
+  }, [targetBus]);
+  const bus_id = useBusName(targetBus?.bus);
+  console.log(bus_id);
 
   // if (isTraced) {
   //   const newLocation = locationData.filter((location) => location?.bus_id == 2);
@@ -160,7 +163,7 @@ const MapComponent = ({
               <option value="" disabled>
                 Select From
               </option>
-              {locationData.map((route) => (
+              {todaysRoutes.map((route) => (
                 <option key={route?._id} value={route?.from}>
                   {route.from}
                 </option>
@@ -177,7 +180,7 @@ const MapComponent = ({
               <option value="" disabled>
                 Select To
               </option>
-              {locationData.map((route) => (
+              {todaysRoutes.map((route) => (
                 <option key={route?._id} value={route?.to}>
                   {route?.to}
                 </option>
