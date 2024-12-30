@@ -45,6 +45,7 @@ const MapComponent = ({
   //   setBusLocation(newLocation);
   // }
   // Loading state when latitude and longitude are not available
+ 
   if (!locationData[0]?.latitude || !locationData[0]?.longitude) {
     return <Loading></Loading>;
   }

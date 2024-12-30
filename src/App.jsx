@@ -3,6 +3,7 @@ import useAxios from "./hooks/useAxios";
 import MapComponent from "./components/MapComponent";
 import SeatComponent from "./components/SeatComponent";
 import Sidebar from "./components/Sidebar";
+import NoBusesToday from "./components/NoBusesToday";
 
 const App = () => {
   const axios = useAxios();
@@ -53,7 +54,9 @@ const App = () => {
   useEffect(() => {
     console.log('td', todaysRoutes); // This will log updated state whenever it changes
   }, [todaysRoutes]); // Dependency on todaysRoutes
-
+  if (!todaysRoutes) {
+    return <NoBusesToday></NoBusesToday>;
+  }
 
   return (
     <div className="w-full ">
